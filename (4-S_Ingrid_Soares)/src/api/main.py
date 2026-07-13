@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Dict, List, Optional
-from .agent.orchestrator import PurpleOrchestrator
-from .agent.tools import PurpleTeamTools
+from typing import Dict, List, Optional, Any
+from src.agent.orchestrator import PurpleOrchestrator
+from src.agent.tools import PurpleTeamTools
 
 app = FastAPI(
     title="Purple Team AI API",

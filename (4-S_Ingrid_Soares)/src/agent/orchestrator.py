@@ -1,6 +1,7 @@
 import logging
-from .tools import PurpleTeamTools
-from .prompts import SYSTEM_PROMPT, TTP_LIST
+import time
+from src.agent.tools import PurpleTeamTools
+from src.agent.prompts import SYSTEM_PROMPT, TTP_LIST
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("PurpleOrchestrator")
@@ -97,7 +98,6 @@ class PurpleOrchestrator:
 if __name__ == "__main__":
     orchestrator = PurpleOrchestrator()
     final_results = orchestrator.run_validation_cycle()
-    print("
-Final Security Coverage Map:")
+    print("\nFinal Security Coverage Map:")
     for ttp, status in final_results.items():
         print(f"{ttp}: {status}")
