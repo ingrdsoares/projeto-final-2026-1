@@ -3,7 +3,7 @@
 ## 1. Problem Definition
 Modern Linux environments often suffer from a gap between the known threats (TTPs) and the actual detection capabilities of the installed security tools. Manual validation of security controls is time-consuming and often inconsistent.
 
-**The Goal:** Build an AI-driven orchestrator that automates the "Attack $ightarrow$ Detect $ightarrow$ Remediate" cycle, using a feedback loop to improve security posture based on real-world simulations.
+**The Goal:** Build an AI-driven orchestrator that automates the "Attack -> Detect -> Remediate" cycle, using a feedback loop to improve security posture based on real-world simulations.
 
 ### Stakeholders
 - **Security Engineers:** Need to validate that their detection rules actually work.
@@ -18,7 +18,7 @@ Modern Linux environments often suffer from a gap between the known threats (TTP
 
 ## 2. Scope & Technical Approach
 
-### The Cycle: Agent $ightarrow$ API $ightarrow$ Product
+### The Cycle: Agent -> API -> Product
 
 #### A. The Agent (The Brain)
 An AI Agent (built with LangChain/Python) that orchestrates the following tools:
