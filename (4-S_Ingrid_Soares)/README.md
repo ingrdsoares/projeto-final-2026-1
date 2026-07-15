@@ -2,7 +2,7 @@
 
 An AI-driven system to automate the simulation and detection of Linux TTPs, bridging the gap between Red and Blue teams.
 
-## 🚀 Architecture: Agent $ightarrow$ API $ightarrow$ Product
+## 🚀 Architecture: Agent -> API -> Product
 
 - **Agent:** AI core using LangChain to orchestrate attacks (Atomic Red Team) and detections (Wazuh).
 - **API:** FastAPI backend for controlling simulations and monitoring alerts.
