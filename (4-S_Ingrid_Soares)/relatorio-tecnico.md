@@ -4,7 +4,7 @@
 - **Aplicação:** Purple Team AI Orchestrator
 - **Repositório:** `ingrid-soares/purple-team-project`
 - **Integrantes:** Ingrid Soares
-- **Objetivo:** Automatizar o ciclo de Simulação $ightarrow$ Detecção $ightarrow$ Remediação para TTPs Linux.
+- **Objetivo:** Automatizar o ciclo de Simulação -> Detecção -> Remediação para TTPs Linux.
 
 ---
 
@@ -27,7 +27,7 @@ A maioria das empresas possui ferramentas de detecção (SIEM/EDR), mas não sab
 ## 3. Arquitetura do Sistema
 
 ### Diagrama de Fluxo
-`TTP ID` $ightarrow$ `AI Agent` $ightarrow$ `Atomic Red Team (Ataque)` $ightarrow$ `Wazuh/Sysmon (Logs)` $ightarrow$ `AI Agent (Análise)` $ightarrow$ `FastAPI` $ightarrow$ `Streamlit Dashboard (Heatmap)`
+`TTP ID` -> `AI Agent` -> `Atomic Red Team (Ataque)` -> `Wazuh/Sysmon (Logs)` -> `AI Agent (Análise)` -> `FastAPI` -> `Streamlit Dashboard (Heatmap)`
 
 ### Engenharia da Solução
 - **Agent/Model Exploration:** Foi escolhido um modelo de orquestração baseado em ferramentas (Tool-use) com um loop de **Closed-Loop Security**. O agente não apenas identifica a falha, mas aplica a correção e re-testa a eficácia da nova regra automaticamente.
