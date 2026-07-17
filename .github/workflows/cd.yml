@@ -8,9 +8,9 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    # permissions:
-    #   contents: read
-    #   packages: write # Necessário para GHCR
+    permissions:
+      contents: read
+      packages: write # Necessário para GHCR
 
     steps:
       - name: Checkout code
@@ -19,44 +19,48 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Log in to Docker Hub
+      - name: Log in to GitHub Container Registry (GHCR)
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          # registry: ghcr.io # Descomente e use se for usar GitHub Container Registry
+          registry: ghcr.io
+          username: ${{ github.actor }} # Usuário do GitHub que disparou o workflow
+          password: ${{ secrets.GITHUB_TOKEN }} # Token de acesso gerado automaticamente pelo GitHub Actions
 
       - name: Build and push API Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./src/infrastructure
-          # Assumindo que o Dockerfile da API se chama Dockerfile.api
-          # Se for apenas Dockerfile, ajuste o parâmetro 'file'.
-          file: ./src/infrastructure/Dockerfile.api 
+          file: ./src/infrastructure/Dockerfile.api # Assumindo que este Dockerfile existe
           push: true
-          tags: YOUR_DOCKERHUB_USERNAME/purple-team-api:latest # Substitua YOUR_DOCKERHUB_USERNAME
+          tags: ghcr.io/${{ github.repository_owner }}/purple-team-api:latest # Tag para GHCR
 
       - name: Build and push Dashboard Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./src/infrastructure
-          # Assumindo que o Dockerfile do dashboard se chama Dockerfile.dashboard
-          # Se for apenas Dockerfile, ajuste o parâmetro 'file'.
-          file: ./src/infrastructure/Dockerfile.dashboard
+          file: ./src/infrastructure/Dockerfile.dashboard # Assumindo que este Dockerfile existe
           push: true
-          tags: YOUR_DOCKERHUB_USERNAME/purple-team-dashboard:latest # Substitua YOUR_DOCKERHUB_USERNAME
+          tags: ghcr.io/${{ github.repository_owner }}/purple-team-dashboard:latest # Tag para GHCR
 
-  # Etapa de deploy (placeholder)
-  # Esta seção precisaria ser configurada com base na plataforma de deploy (Railway, Cloud Run, etc.)
-  # Exemplo genérico para Railway:
-  # deploy:
-  #   needs: build-and-push
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy to Railway
-  #       uses: railway-apps/railway-deploy@v1
-  #       with:
-  #         token: ${{ secrets.RAILWAY_TOKEN }}
-  #         project: <seu-projeto-railway-id>
-  #         service: <seu-servico-api-id> # ou dashboard
-  #         image: YOUR_DOCKERHUB_USERNAME/purple-team-api:latest # ou GHCR tag
+  deploy-to-railway:
+    needs: build-and-push # Depende do sucesso do build e push
+    runs-on: ubuntu-latest
+    # Opcional: configurar permissões se usar o action do Railway
+    # permissions: {} 
+
+    steps:
+      - name: Deploy API to Railway
+        uses: railway-apps/railway-deploy@v1
+        with:
+          token: ${{ secrets.RAILWAY_TOKEN }}
+          project: ${{ secrets.RAILWAY_PROJECT_ID }}
+          service: ${{ secrets.RAILWAY_API_SERVICE_ID }}
+          image: ghcr.io/${{ github.repository_owner }}/purple-team-api:latest
+
+      - name: Deploy Dashboard to Railway
+        uses: railway-apps/railway-deploy@v1
+        with:
+          token: ${{ secrets.RAILWAY_TOKEN }}
+          project: ${{ secrets.RAILWAY_PROJECT_ID }}
+          service: ${{ secrets.RAILWAY_DASHBOARD_SERVICE_ID }}
+          image: ghcr.io/${{ github.repository_owner }}/purple-team-dashboard:latest
