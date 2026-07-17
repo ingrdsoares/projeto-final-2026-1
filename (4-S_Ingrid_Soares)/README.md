@@ -31,4 +31,49 @@ An AI-driven system to automate the simulation and detection of Linux TTPs, brid
 - Exfiltration (C2 Channel)
 
 ---
-Refer to [mission-brief.md](docs/mission-brief.md) for full scope and objectives.
+
+## 🌐 Live Demo & Video
+- **Public URL:** [Acesse a aplicação aqui](https://sua-url-no-railway.app) *(Substitua após o deploy)*
+- **Demo Video:** [Assista ao vídeo de demonstração](https://youtube.com/seu-video-id) *(Substitua após o upload)*
+
+## 🛠 Tech Stack
+- **Red Team:** Atomic Red Team.
+- **Blue Team:** Wazuh, Sysmon for Linux, Sigma Rules.
+- **Orchestration:** Python, FastAPI, LangChain.
+- **UI:** Streamlit.
+- **CI/CD & Deploy:** GitHub Actions, Docker, Railway.
+
+## 🚀 How to Run (Local)
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/seu-usuario/projeto-final-2026-1.git
+   cd projeto-final-2026-1/(4-S_Ingrid_Soares)
+   ```
+
+2. **Setup Infrastructure (Wazuh):**
+   ```bash
+   cd src/infrastructure
+   docker compose up -d
+   ```
+
+3. **Run API and Dashboard:**
+   Use the provided Dockerfiles or run directly:
+   ```bash
+   # API
+   python -m uvicorn src.api.main:app --port 8000
+   # Dashboard
+   streamlit run src/product/app.py
+   ```
+
+## ⚙️ CI/CD Configuration
+This project uses **GitHub Actions** for automated:
+- **Linting:** Using `Ruff`.
+- **Docker Build:** Images for API and Dashboard.
+- **Deployment:** Automatic push to **Railway**.
+
+*Note: To enable deployment, configure the following secrets in your GitHub repository:*
+- `RAILWAY_TOKEN`
+- `RAILWAY_PROJECT_ID`
+- `RAILWAY_API_SERVICE_ID`
+- `RAILWAY_DASHBOARD_SERVICE_ID`
