@@ -80,8 +80,9 @@ A separação entre a lógica do agente e a API permitiu que a interface fosse l
 ## 7. Impactos e Ética
 A ferramenta é destinada exclusivamente a fins de defesa (Purple Team). O uso indevido para automatizar ataques em sistemas não autorizados é estritamente proibido. Para mitigar riscos, o sistema deve ser executado em redes isoladas.
 
-## 8. Referências
-- MITRE ATT&CK Framework.
-- Wazuh Documentation.
-- Atomic Red Team (Red Canary).
-- FastAPI & Streamlit Docs.
+## 8. Referências e Licenças
+- **MITRE ATT&CK Framework:** Base de conhecimento de táticas e técnicas de adversários. [Licença MITRE](https://attack.mitre.org/resources/terms-of-use/).
+- **Atomic Red Team (Red Canary):** Biblioteca de testes de segurança. [Licença MIT](https://github.com/redcanaryco/atomic-red-team/blob/master/LICENSE).
+- **Wazuh:** Plataforma de segurança open-source. [Licença GPLv2](https://github.com/wazuh/wazuh/blob/master/LICENSE).
+- **Sysmon for Linux (Microsoft):** Ferramenta de telemetria de processos. [Licença MIT](https://github.com/microsoft/SysmonForLinux/blob/main/LICENSE).
+- **Sigma Rules:** Padrão genérico para assinaturas de detecção. [Licença Apache 2.0](https://github.com/SigmaHQ/sigma/blob/master/LICENSE.md).
