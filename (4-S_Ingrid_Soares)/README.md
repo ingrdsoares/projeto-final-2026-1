@@ -66,6 +66,23 @@ An AI-driven system to automate the simulation and detection of Linux TTPs, brid
    streamlit run src/product/app.py
    ```
 
+## 🛤️ Railway Setup Guide (Fulfilling Point 1)
+
+To get your public URL, follow these steps:
+
+1. **Create a New Project** on [Railway.app](https://railway.app).
+2. **Add Two Web Services:**
+   - **Service 1 (API):**
+     - Source: This repository.
+     - Root Directory: `(4-S_Ingrid_Soares)`
+     - Dockerfile: `src/infrastructure/Dockerfile.api`
+   - **Service 2 (Dashboard):**
+     - Source: This repository.
+     - Root Directory: `(4-S_Ingrid_Soares)`
+     - Dockerfile: `src/infrastructure/Dockerfile.dashboard`
+3. **Configure Domains:** Railway will provide a public URL for each service (e.g., `purple-team-api.up.railway.app`).
+4. **Update README:** Replace the placeholder URLs with your actual Railway domains.
+
 ## ⚙️ CI/CD Configuration
 This project uses **GitHub Actions** for automated:
 - **Linting:** Using `Ruff`.
