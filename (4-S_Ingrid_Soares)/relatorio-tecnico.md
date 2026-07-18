@@ -76,14 +76,34 @@ O uso de um **Mapa de Calor (Heatmap)** permite que o gestor de segurança ident
 
 ---
 
-## 6. Reflexões e Próximos Passos
+## Evolução e Amadurecimento do Projeto
+A evolução do Purple Team AI Orchestrator transformou um protótipo local em uma solução de engenharia de nível profissional. Abaixo, detalhamos essa evolução:
 
-### O que funcionou
-A separação entre a lógica do agente e a API permitiu que a interface fosse leve e rápida. A escolha do Atomic Red Team garantiu que os ataques fossem padronizados e seguros.
+1. **De "Local" para "Produção" (Deploy)**
+   - **Antes**: O sistema rodava apenas localmente com configurações manuais de Docker.
+   - **Depois**: Implementamos uma infraestrutura pública e viva no **Railway**, garantindo que o sistema seja acessível via internet, cumprindo critérios de confiabilidade e disponibilidade.
 
-### Limitações e Melhorias
-- **Integração Real:** No protótipo, algumas chamadas de API foram simuladas para garantir a execução. O próximo passo é a configuração de certificados SSL reais para a API do Wazuh.
-- **Auto-Remediação:** O agente atualmente *propõe* a regra. O próximo nível seria o agente *aplicar* a regra no Wazuh e re-testar o ataque automaticamente até que ele seja detectado.
+2. **Automação e DevOps**
+   - **Antes**: Deploy manual e repetitivo.
+   - **Depois**: Criamos um pipeline de **CI/CD com GitHub Actions**. Qualquer mudança no código é testada (linting), construída (Docker) e implantada (Deploy) automaticamente, seguindo padrões de mercado.
+
+3. **Qualidade e Segurança do Código**
+   - **Antes**: Existiam variáveis não utilizadas, importações redundantes, blocos `except` genéricos e URLs fixas ("hardcoded").
+   - **Depois**: Adotamos um linter (**Ruff**) rigoroso, gerenciamento de dependências via `requirements.txt` e uso de variáveis de ambiente (`API_URL`), tornando a aplicação compatível com padrões modernos de desenvolvimento (12-Factor App).
+
+4. **Documentação e Profissionalismo**
+   - **Antes**: Documentação básica.
+   - **Depois**: Adicionamos seções detalhadas sobre o Pipeline de CI/CD, fluxos de deploy e referências técnicas, garantindo uma visão profissional de ponta a ponta do ciclo de vida do software.
+
+---
+
+## Melhorias Futuras
+Para elevar ainda mais o projeto, os seguintes pontos foram identificados como próximos passos:
+
+- **Automação de Remediação:** Atualmente, o agente propõe a regra de detecção. O próximo nível seria a aplicação automática da regra no SIEM (Wazuh) e a re-execução do teste de ataque para validar a mitigação.
+- **Integração com Certificados SSL Reais:** Configuração de certificados SSL personalizados para a comunicação entre a API e o SIEM, reforçando a segurança em produção.
+- **Monitoramento Avançado:** Implementação de logs estruturados e métricas de desempenho mais granulares no painel de controle do Dashboard.
+- **Suporte a mais TTPs:** Ampliar a biblioteca do Atomic Red Team utilizada, cobrindo novas táticas do framework MITRE ATT&CK.
 
 ---
 
