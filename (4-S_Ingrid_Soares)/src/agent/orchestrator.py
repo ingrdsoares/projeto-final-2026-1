@@ -1,7 +1,7 @@
 import logging
 import time
 from src.agent.tools import PurpleTeamTools
-from src.agent.prompts import SYSTEM_PROMPT, TTP_LIST
+from src.agent.prompts import TTP_LIST
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("PurpleOrchestrator")
@@ -32,7 +32,7 @@ class PurpleOrchestrator:
             
             # 1. Simulate
             self.log_reasoning(f"Action: Simulating attack {ttp} via Atomic Red Team.")
-            attack_res = self.tools.simulate_attack(ttp)
+            self.tools.simulate_attack(ttp)
             
             # 2. Check Detection
             self.log_reasoning(f"Action: Querying Wazuh API for alerts related to {ttp}.")

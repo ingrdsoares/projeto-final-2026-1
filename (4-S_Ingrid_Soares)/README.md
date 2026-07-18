@@ -34,7 +34,7 @@ An AI-driven system to automate the simulation and detection of Linux TTPs, brid
 
 ## 🌐 Live Demo & Video
 - **Public URL:** [Acesse a aplicação aqui](https://sua-url-no-railway.app) *(Substitua após o deploy)*
-- **Demo Video:** [Assista ao vídeo de demonstração](https://youtube.com/seu-video-id) *(Substitua após o upload)*
+- **Demo Video:** [Assista ao vídeo de demonstração](https://mega.nz/folder/Gqw0DTZQ#UmqMmBx3jEpW2x2dKOA1Vw) *(Substitua após o upload)*
 
 ## 🛠 Tech Stack
 - **Red Team:** Atomic Red Team.

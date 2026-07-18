@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Dict, List, Optional, Any
+from typing import Dict, Optional, Any
 from src.agent.orchestrator import PurpleOrchestrator
 from src.agent.tools import PurpleTeamTools
 

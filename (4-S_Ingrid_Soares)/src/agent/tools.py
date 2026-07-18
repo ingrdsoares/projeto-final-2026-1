@@ -1,6 +1,4 @@
 from typing import Dict, Any
-import requests
-import subprocess
 import logging
 
 logging.basicConfig(level=logging.INFO)

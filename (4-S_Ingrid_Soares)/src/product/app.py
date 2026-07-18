@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
 import pandas as pd
-import time
 
 # Configuration
 API_URL = "http://localhost:8000"
@@ -46,7 +45,7 @@ with col1:
             coverage = response.json()
         else:
             coverage = {}
-    except:
+    except Exception:
         coverage = {}
 
     if not coverage:
@@ -79,7 +78,7 @@ with col1:
                 st.info("No reasoning logs available. Run a cycle first.")
         else:
             st.error("Could not retrieve logs.")
-    except:
+    except Exception:
         st.error("API connection failed.")
 
 with col2:
