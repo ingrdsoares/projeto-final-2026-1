@@ -43,24 +43,21 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/purple-team-dashboard:latest # Tag para GHCR
 
   deploy-to-railway:
-    needs: build-and-push # Depende do sucesso do build e push
+    needs: build-and-push
     runs-on: ubuntu-latest
-    # Opcional: configurar permissões se usar o action do Railway
-    # permissions: {} 
-
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm i -g @railway/cli
+
       - name: Deploy API to Railway
-        uses: railway-apps/railway-deploy@v1
-        with:
-          token: ${{ secrets.RAILWAY_TOKEN }}
-          project: ${{ secrets.RAILWAY_PROJECT_ID }}
-          service: ${{ secrets.RAILWAY_API_SERVICE_ID }}
-          image: ghcr.io/${{ github.repository_owner }}/purple-team-api:latest
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway deploy --project=${{ secrets.RAILWAY_PROJECT_ID }} --service=${{ secrets.RAILWAY_API_SERVICE_ID }}
 
       - name: Deploy Dashboard to Railway
-        uses: railway-apps/railway-deploy@v1
-        with:
-          token: ${{ secrets.RAILWAY_TOKEN }}
-          project: ${{ secrets.RAILWAY_PROJECT_ID }}
-          service: ${{ secrets.RAILWAY_DASHBOARD_SERVICE_ID }}
-          image: ghcr.io/${{ github.repository_owner }}/purple-team-dashboard:latest
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway deploy --project=${{ secrets.RAILWAY_PROJECT_ID }} --service=${{ secrets.RAILWAY_DASHBOARD_SERVICE_ID }}
