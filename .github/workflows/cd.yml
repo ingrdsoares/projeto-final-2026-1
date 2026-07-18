@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write # Necessário para GHCR
+      packages: write
 
     steps:
       - name: Checkout code
@@ -23,41 +23,21 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }} # Usuário do GitHub que disparou o workflow
-          password: ${{ secrets.GITHUB_TOKEN }} # Token de acesso gerado automaticamente pelo GitHub Actions
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push API Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./src/infrastructure
-          file: ./src/infrastructure/Dockerfile.api # Assumindo que este Dockerfile existe
+          file: ./src/infrastructure/Dockerfile.api
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/purple-team-api:latest # Tag para GHCR
+          tags: ghcr.io/${{ github.repository_owner }}/purple-team-api:latest
 
       - name: Build and push Dashboard Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./src/infrastructure
-          file: ./src/infrastructure/Dockerfile.dashboard # Assumindo que este Dockerfile existe
+          file: ./src/infrastructure/Dockerfile.dashboard
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/purple-team-dashboard:latest # Tag para GHCR
-
-  deploy-to-railway:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install Railway CLI
-        run: npm i -g @railway/cli
-
-      - name: Deploy API to Railway
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: cd "(4-S_Ingrid_Soares)" && railway up --project=${{ secrets.RAILWAY_PROJECT_ID }} --service=13e24071-b1cc-4714-a5d3-9aafa1e5b43f --environment=production
-
-      - name: Deploy Dashboard to Railway
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: cd "(4-S_Ingrid_Soares)" && railway up --project=${{ secrets.RAILWAY_PROJECT_ID }} --service=07d8ea47-7152-4512-8def-cae2bf9aac28 --environment=production
+          tags: ghcr.io/${{ github.repository_owner }}/purple-team-dashboard:latest
