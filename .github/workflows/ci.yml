@@ -23,29 +23,18 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Assumindo que as dependências estão listadas em algum lugar ou podem ser instaladas genericamente.
-          # Se houver um setup.py ou requirements.txt, este comando seria mais específico.
-          # Por agora, instalando as dependências mencionadas no relatório.
-          pip install fastapi uvicorn streamlit ruff # Adicionando ruff para linting
-          # Se houver um arquivo requirements.txt, use: pip install -r requirements.txt
-          # Se houver um setup.py, pode ser necessário instalar o pacote: pip install .
+          pip install -r (4-S_Ingrid_Soares)/requirements.txt ruff
 
-      - name: Run linters and formatters
+      - name: Run linters
         run: |
-          # Executando Ruff para linting e formatação
           ruff check .
-          ruff format . --check # Verifica se a formatação está correta
+          ruff format . --check
 
-      - name: Run tests
+      - name: Check code integrity
         run: |
-          # Assumindo que os testes podem ser descobertos e executados com Python's unittest module.
-          # Se pytest for usado, seria: pytest
-          # Se houver um script de teste específico, ajuste aqui.
-          echo "Running tests..."
-          # Exemplo genérico:
-          # python -m unittest discover -s tests -p "test_*.py"
-          # Se nenhum teste formal for encontrado, este passo pode ser ajustado ou removido.
-          echo "No formal test suite found, skipping test execution." # Placeholder, precisa ser ajustado se testes forem implementados.
+          # Apenas checa se os arquivos importam corretamente, já que não há testes unitários
+          python -c "from src.api.main import app; from src.agent.orchestrator import PurpleOrchestrator"
+          echo "Code integrity check passed."
 
       # Adicionar aqui passos para construir imagens Docker se necessário para testes
       # - name: Build Docker images for tests
