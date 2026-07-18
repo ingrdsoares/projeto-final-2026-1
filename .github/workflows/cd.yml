@@ -55,9 +55,9 @@ jobs:
       - name: Deploy API to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: cd "(4-S_Ingrid_Soares)" && railway link --project=${{ secrets.RAILWAY_PROJECT_ID }} && railway up --service=${{ secrets.RAILWAY_API_SERVICE_ID }} --environment=production
+        run: cd "(4-S_Ingrid_Soares)" && railway up --project=${{ secrets.RAILWAY_PROJECT_ID }} --service=${{ secrets.RAILWAY_API_SERVICE_ID }} --environment=production
 
       - name: Deploy Dashboard to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: cd "(4-S_Ingrid_Soares)" && railway link --project=${{ secrets.RAILWAY_PROJECT_ID }} && railway up --service=${{ secrets.RAILWAY_DASHBOARD_SERVICE_ID }} --environment=production
+        run: cd "(4-S_Ingrid_Soares)" && railway up --project=${{ secrets.RAILWAY_PROJECT_ID }} --service=${{ secrets.RAILWAY_DASHBOARD_SERVICE_ID }} --environment=production
