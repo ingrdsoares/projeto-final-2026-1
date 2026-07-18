@@ -86,3 +86,8 @@ A ferramenta é destinada exclusivamente a fins de defesa (Purple Team). O uso i
 - **Wazuh:** Plataforma de segurança open-source. [Licença GPLv2](https://github.com/wazuh/wazuh/blob/master/LICENSE).
 - **Sysmon for Linux (Microsoft):** Ferramenta de telemetria de processos. [Licença MIT](https://github.com/microsoft/SysmonForLinux/blob/main/LICENSE).
 - **Sigma Rules:** Padrão genérico para assinaturas de detecção. [Licença Apache 2.0](https://github.com/SigmaHQ/sigma/blob/master/LICENSE.md).
+
+## 9. Aprovação do Docente
+- **Status:** [Insira aqui: Aguardando/Aprovado]
+- **Data da aprovação:** [Insira aqui a data]
+- **Observações:** [Insira aqui eventuais observações feitas pelo docente]
