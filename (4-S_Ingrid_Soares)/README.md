@@ -33,8 +33,9 @@ An AI-driven system to automate the simulation and detection of Linux TTPs, brid
 ---
 
 ## 🌐 Live Demo & Video
-- **Public URL:** [Acesse a aplicação aqui](https://sua-url-no-railway.app) *(Substitua após o deploy)*
-- **Demo Video:** [Assista ao vídeo de demonstração](https://mega.nz/folder/Gqw0DTZQ#UmqMmBx3jEpW2x2dKOA1Vw) *(Substitua após o upload)*
+- **API URL:** [https://fastapi-backend-production-7a41.up.railway.app](https://fastapi-backend-production-7a41.up.railway.app)
+- **Dashboard URL:** [https://streamlit-dashboard-production-f577.up.railway.app](https://streamlit-dashboard-production-f577.up.railway.app)
+- **Demo Video:** [Assista ao vídeo de demonstração](https://mega.nz/folder/Gqw0DTZQ#UmqMmBx3jEpW2x2dKOA1Vw)
 
 ## 🛠 Tech Stack
 - **Red Team:** Atomic Red Team.
