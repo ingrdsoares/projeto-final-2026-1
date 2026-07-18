@@ -5,18 +5,16 @@ import pandas as pd
 # Configuration
 API_URL = "http://localhost:8000"
 
-st.set_page_config(
-    page_title="Purple Team AI Dashboard",
-    page_icon="🛡️",
-    layout="wide"
-)
+st.set_page_config(page_title="Purple Team AI Dashboard", page_icon="🛡️", layout="wide")
 
 st.title("🛡️ Purple Team AI Orchestrator")
 st.markdown("### Automated Security Validation for Linux")
 
 # Sidebar for control
 st.sidebar.header("Control Panel")
-auto_fix_enabled = st.sidebar.checkbox("Enable Auto-Remediation (Closed-Loop)", value=False)
+auto_fix_enabled = st.sidebar.checkbox(
+    "Enable Auto-Remediation (Closed-Loop)", value=False
+)
 
 if st.sidebar.button("🚀 Run Full Validation Cycle"):
     with st.spinner("Agent is orchestrating attacks and verifying detections..."):
@@ -26,7 +24,7 @@ if st.sidebar.button("🚀 Run Full Validation Cycle"):
             response = requests.post(f"{API_URL}/validate-all", params=params)
             if response.status_code == 200:
                 st.success("Validation cycle complete!")
-                st.session_state['coverage'] = response.json()
+                st.session_state["coverage"] = response.json()
             else:
                 st.error("API Error occurred during validation.")
         except Exception as e:
@@ -37,7 +35,7 @@ col1, col2 = st.columns([2, 1])
 
 with col1:
     st.subheader("🗺️ MITRE ATT&CK Coverage Map")
-    
+
     # Get current coverage
     try:
         response = requests.get(f"{API_URL}/coverage")
@@ -54,14 +52,16 @@ with col1:
         # Prepare data for the heatmap
         data = []
         for ttp, status in coverage.items():
-            data.append({
-                "TTP": ttp, 
-                "Status": status, 
-                "Color": "🟢" if status == "DETECTED" else "🔴"
-            })
-        
+            data.append(
+                {
+                    "TTP": ttp,
+                    "Status": status,
+                    "Color": "🟢" if status == "DETECTED" else "🔴",
+                }
+            )
+
         df = pd.DataFrame(data)
-        
+
         # Custom rendering for the heatmap
         for index, row in df.iterrows():
             st.markdown(f"**{row['TTP']}**: {row['Color']} {row['Status']}")
@@ -83,8 +83,11 @@ with col1:
 
 with col2:
     st.subheader("🛠️ Quick Actions")
-    ttp_to_sim = st.selectbox("Select TTP to Simulate", ["T1543.002", "T1548.001", "T1070.004", "T1082", "T1041"])
-    
+    ttp_to_sim = st.selectbox(
+        "Select TTP to Simulate",
+        ["T1543.002", "T1548.001", "T1070.004", "T1082", "T1041"],
+    )
+
     if st.button("Simulate Attack"):
         with st.spinner("Simulating..."):
             try:

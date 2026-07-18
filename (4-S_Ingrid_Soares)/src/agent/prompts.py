@@ -16,9 +16,9 @@ Always be concise and provide technical reasoning for your actions.
 """
 
 TTP_LIST = [
-    "T1543.002", # Persistence (Systemd)
-    "T1548.001", # PrivEsc (Sudo)
-    "T1070.004", # Evasion (Log deletion)
-    "T1082",     # Discovery (System info)
-    "T1041",     # Exfiltration (C2)
+    "T1543.002",  # Persistence (Systemd)
+    "T1548.001",  # PrivEsc (Sudo)
+    "T1070.004",  # Evasion (Log deletion)
+    "T1082",  # Discovery (System info)
+    "T1041",  # Exfiltration (C2)
 ]
