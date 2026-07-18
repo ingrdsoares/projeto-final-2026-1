@@ -2,9 +2,9 @@
 builder = "NIXPACKS"
 
 [api]
+service = "13e24071-b1cc-4714-a5d3-9aafa1e5b43f"
 dockerfile = "src/infrastructure/Dockerfile.api"
-root_directory = "(4-S_Ingrid_Soares)"
 
 [dashboard]
+service = "07d8ea47-7152-4512-8def-cae2bf9aac28"
 dockerfile = "src/infrastructure/Dockerfile.dashboard"
-root_directory = "(4-S_Ingrid_Soares)"
