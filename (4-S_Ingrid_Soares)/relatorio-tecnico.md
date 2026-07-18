@@ -38,6 +38,16 @@ A maioria das empresas possui ferramentas de detecção (SIEM/EDR), mas não sab
 
 ---
 
+## Pipeline de CI/CD
+Implementou-se um pipeline robusto via **GitHub Actions** composto por 4 etapas críticas que garantem a qualidade e a automação do ciclo de entrega:
+
+1. **CI / lint-and-test**: Executa `Ruff` para garantir a qualidade do código, formatação e integridade das importações em cada Push/PR.
+2. **CD / build-and-push**: Constrói as imagens Docker da API e do Dashboard de forma automatizada e as publica com segurança no **GitHub Container Registry (GHCR)**.
+3. **FastAPI Backend (Deploy)**: Deploy automatizado da API no **Railway**, garantindo alta disponibilidade.
+4. **Streamlit Dashboard (Deploy)**: Deploy automatizado do Dashboard no **Railway**, configurado para comunicação segura com a API via variáveis de ambiente.
+
+---
+
 ## 4. Descrição do Agente
 
 ### Modelo e Ferramentas
