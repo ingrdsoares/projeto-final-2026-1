@@ -6,9 +6,9 @@ import os
 # Configuration
 API_URL = os.getenv("API_URL", "http://localhost:8000")
 
-st.set_page_config(page_title="Purple Team AI Dashboard", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="Purple Team AI Dashboard", page_icon=None, layout="wide")
 
-st.title("🛡️ Purple Team AI Orchestrator")
+st.title("Purple Team AI Orchestrator")
 st.markdown("### Automated Security Validation for Linux")
 
 # Sidebar for control
@@ -17,7 +17,7 @@ auto_fix_enabled = st.sidebar.checkbox(
     "Enable Auto-Remediation (Closed-Loop)", value=False
 )
 
-if st.sidebar.button("🚀 Run Full Validation Cycle"):
+if st.sidebar.button("Run Full Validation Cycle"):
     with st.spinner("Agent is orchestrating attacks and verifying detections..."):
         try:
             # Use the auto_fix parameter
@@ -35,7 +35,7 @@ if st.sidebar.button("🚀 Run Full Validation Cycle"):
 col1, col2 = st.columns([2, 1])
 
 with col1:
-    st.subheader("🗺️ MITRE ATT&CK Coverage Map")
+    st.subheader("MITRE ATT&CK Coverage Map")
 
     # Get current coverage
     try:
@@ -57,7 +57,7 @@ with col1:
                 {
                     "TTP": ttp,
                     "Status": status,
-                    "Color": "🟢" if status == "DETECTED" else "🔴",
+                    "Label": "Detected" if status == "DETECTED" else "Missed",
                 }
             )
 
@@ -65,10 +65,10 @@ with col1:
 
         # Custom rendering for the heatmap
         for index, row in df.iterrows():
-            st.markdown(f"**{row['TTP']}**: {row['Color']} {row['Status']}")
+            st.markdown(f"**{row['TTP']}**: {row['Label']} {row['Status']}")
 
     st.divider()
-    st.subheader("🧠 Agent Reasoning Log")
+    st.subheader("Agent Reasoning Log")
     try:
         res_log = requests.get(f"{API_URL}/reasoning")
         if res_log.status_code == 200:
@@ -83,7 +83,7 @@ with col1:
         st.error("API connection failed.")
 
 with col2:
-    st.subheader("🛠️ Quick Actions")
+    st.subheader("Quick Actions")
     ttp_to_sim = st.selectbox(
         "Select TTP to Simulate",
         ["T1543.002", "T1548.001", "T1070.004", "T1082", "T1041"],
@@ -110,15 +110,15 @@ with col2:
                 st.error(f"Error: {e}")
 
     st.divider()
-    st.subheader("🔊 Noise Analysis")
+    st.subheader("Noise Analysis")
     if st.button("Test False Positives"):
         with st.spinner("Analyzing noise..."):
             try:
                 res = requests.post(f"{API_URL}/test-noise")
                 noise_data = res.json()
                 for action, status in noise_data.items():
-                    color = "🔴" if status == "FALSE POSITIVE" else "🟢"
-                    st.write(f"{color} {action}: {status}")
+                    label = "ALERTA" if status == "FALSE POSITIVE" else "LIMPO"
+                    st.write(f"{label} - {action}: {status}")
             except Exception as e:
                 st.error(f"Error: {e}")
 
