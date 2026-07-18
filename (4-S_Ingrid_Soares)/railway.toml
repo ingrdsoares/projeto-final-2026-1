@@ -1,10 +1,5 @@
 [build]
 builder = "NIXPACKS"
 
-[api]
-dockerfile = "src/infrastructure/Dockerfile.api"
-root_directory = "(4-S_Ingrid_Soares)"
-
-[dashboard]
-dockerfile = "src/infrastructure/Dockerfile.dashboard"
-root_directory = "(4-S_Ingrid_Soares)"
+[deploy]
+startCommand = "uvicorn src.api.main:app --host 0.0.0.0 --port $PORT"
