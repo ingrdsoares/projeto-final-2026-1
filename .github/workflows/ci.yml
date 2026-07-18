@@ -32,7 +32,9 @@ jobs:
 
       - name: Check code integrity
         run: |
-          # Apenas checa se os arquivos importam corretamente, já que não há testes unitários
+          # Define PYTHONPATH para incluir o diretório raiz do repositório
+          export PYTHONPATH=$PYTHONPATH:.
+          # Agora o Python deve encontrar 'src.api' e 'src.agent'
           python -c "from src.api.main import app; from src.agent.orchestrator import PurpleOrchestrator"
           echo "Code integrity check passed."
 
