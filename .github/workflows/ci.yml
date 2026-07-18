@@ -32,8 +32,8 @@ jobs:
 
       - name: Check code integrity
         run: |
-          # Define PYTHONPATH diretamente no comando para garantir o escopo
-          PYTHONPATH=. python -c "from src.api.main import app; from src.agent.orchestrator import PurpleOrchestrator"
+          # Entra no diretório do projeto e roda o check lá, assim o Python reconhece 'src'
+          cd "(4-S_Ingrid_Soares)" && PYTHONPATH=. python -c "from src.api.main import app; from src.agent.orchestrator import PurpleOrchestrator"
           echo "Code integrity check passed."
 
       # Adicionar aqui passos para construir imagens Docker se necessário para testes
